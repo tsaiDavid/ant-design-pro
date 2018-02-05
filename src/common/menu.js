@@ -1,87 +1,87 @@
 import { isUrl } from '../utils/utils';
 
 const menuData = [{
-  name: 'dashboard',
+  name: 'Dashboard',
   icon: 'dashboard',
   path: 'dashboard',
   children: [{
-    name: '分析页',
+    name: 'Analysis',
     path: 'analysis',
   }, {
-    name: '监控页',
+    name: 'Monitoring',
     path: 'monitor',
   }, {
-    name: '工作台',
+    name: 'Workplace',
     path: 'workplace',
     // hideInMenu: true,
   }],
 }, {
-  name: '表单页',
+  name: 'Form',
   icon: 'form',
   path: 'form',
   children: [{
-    name: '基础表单',
+    name: 'Basic Form',
     path: 'basic-form',
   }, {
-    name: '分步表单',
+    name: 'Step Form',
     path: 'step-form',
   }, {
-    name: '高级表单',
+    name: 'Advanced Form',
     authority: 'admin',
     path: 'advanced-form',
   }],
 }, {
-  name: '列表页',
+  name: 'Table',
   icon: 'table',
   path: 'list',
   children: [{
-    name: '查询表格',
+    name: 'Table List',
     path: 'table-list',
   }, {
-    name: '标准列表',
+    name: 'Basic List',
     path: 'basic-list',
   }, {
-    name: '卡片列表',
+    name: 'Card List',
     path: 'card-list',
   }, {
-    name: '搜索列表',
+    name: 'Search',
     path: 'search',
     children: [{
-      name: '搜索列表（文章）',
+      name: 'Articles',
       path: 'articles',
     }, {
-      name: '搜索列表（项目）',
+      name: 'Projects',
       path: 'projects',
     }, {
-      name: '搜索列表（应用）',
+      name: 'Applications',
       path: 'applications',
     }],
   }],
 }, {
-  name: '详情页',
+  name: 'Profile',
   icon: 'profile',
   path: 'profile',
   children: [{
-    name: '基础详情页',
+    name: 'Basic',
     path: 'basic',
   }, {
-    name: '高级详情页',
+    name: 'Advanced',
     path: 'advanced',
     authority: 'admin',
   }],
 }, {
-  name: '结果页',
+  name: 'Result',
   icon: 'check-circle-o',
   path: 'result',
   children: [{
-    name: '成功',
+    name: 'Success',
     path: 'success',
   }, {
-    name: '失败',
+    name: 'Fail',
     path: 'fail',
   }],
 }, {
-  name: '异常页',
+  name: 'Warning',
   icon: 'warning',
   path: 'exception',
   children: [{
@@ -94,23 +94,23 @@ const menuData = [{
     name: '500',
     path: '500',
   }, {
-    name: '触发异常',
+    name: 'Trigger',
     path: 'trigger',
     hideInMenu: true,
   }],
 }, {
-  name: '账户',
+  name: 'User',
   icon: 'user',
   path: 'user',
   authority: 'guest',
   children: [{
-    name: '登录',
+    name: 'Login',
     path: 'login',
   }, {
-    name: '注册',
+    name: 'Register',
     path: 'register',
   }, {
-    name: '注册结果',
+    name: 'Registration Result',
     path: 'register-result',
   }],
 }];
