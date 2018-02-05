@@ -5,20 +5,15 @@ import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import FooterToolbar from '../../components/FooterToolbar';
 import TableForm from './TableForm';
 import styles from './style.less';
-import moment from 'moment';
 
 const { Option } = Select;
 const { RangePicker } = DatePicker;
 
-// Used by Datepicker to set the format of our date string
-const dateFormat = 'MM/DD/YYYY';
-
 const fieldLabels = {
-  vitalStatus: 'Vital Status',
-  name: 'Name',
-  url: 'URL',
-  owner: 'Owner',
-  approver: 'Approver',
+  name: '仓库名',
+  url: '仓库域名',
+  owner: '仓库管理员',
+  approver: '审批人',
   dateRange: '生效日期',
   type: '仓库类型',
   name2: '任务名',
@@ -116,42 +111,21 @@ class AdvancedForm extends PureComponent {
         </span>
       );
     };
-
     return (
       <PageHeaderLayout
         title="高级表单"
         content="高级表单常见于一次性输入和提交大批量数据的场景。"
         wrapperClassName={styles.advancedForm}
       >
-        <Card title="Vital Status" className={styles.card}>
-          <Form layout="vertical">
-            <Row gutter={16}>
-              <Col lg={6} md={12} sm={24}>
-                {/* This provides the actual visual label to the field */}
-                <Form.Item label={fieldLabels.vitalStatus}>
-                  {getFieldDecorator('vitalStatus', {
-                    rules: [{ required: true, message: '请输入仓库名称' }],
-                  })(
-                    <Select placeholder="Select Status...">
-                      <Option value="xiao">Alive</Option>
-                      <Option value="mao">Deceased</Option>
-                    </Select>
-                    )}
-                </Form.Item>
-              </Col>
-            </Row>
-          </Form>
-        </Card>
-
-        <Card title="Primary Diagnosis" className={styles.card} bordered={false}>
+        <Card title="仓库管理" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
               <Col lg={6} md={12} sm={24}>
-                <Form.Item label="Diagnosis Date">
+                <Form.Item label={fieldLabels.name}>
                   {getFieldDecorator('name', {
-                    rules: [{ required: true, message: 'MM/DD/YYYY' }],
+                    rules: [{ required: true, message: '请输入仓库名称' }],
                   })(
-                    <DatePicker defaultValue={moment('2015/01/01', dateFormat)} format={dateFormat} />
+                    <Input placeholder="请输入仓库名称" />
                   )}
                 </Form.Item>
               </Col>
@@ -219,7 +193,6 @@ class AdvancedForm extends PureComponent {
             </Row>
           </Form>
         </Card>
-
         <Card title="任务管理" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
