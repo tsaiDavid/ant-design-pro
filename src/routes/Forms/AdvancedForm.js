@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react';
-import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd';
+import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover, Checkbox } from 'antd';
 import { connect } from 'dva';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import FooterToolbar from '../../components/FooterToolbar';
-import TableForm from './TableForm';
+// import TableForm from './TableForm';
 import styles from './style.less';
 import moment from 'moment';
 
@@ -27,24 +27,11 @@ const fieldLabels = {
   approver2: '责任人',
   dateRange2: '生效日期',
   type2: '任务类型',
+  site: 'Site',
+  histology: 'Histology',
+  pathology: 'Pathologic Stage',
+  date: 'Date',
 };
-
-const tableData = [{
-  key: '1',
-  workId: '00001',
-  name: 'John Brown',
-  department: 'New York No. 1 Lake Park',
-}, {
-  key: '2',
-  workId: '00002',
-  name: 'Jim Green',
-  department: 'London No. 1 Lake Park',
-}, {
-  key: '3',
-  workId: '00003',
-  name: 'Joe Black',
-  department: 'Sidney No. 1 Lake Park',
-}];
 
 class AdvancedForm extends PureComponent {
   state = {
@@ -119,8 +106,8 @@ class AdvancedForm extends PureComponent {
 
     return (
       <PageHeaderLayout
-        title="高级表单"
-        content="高级表单常见于一次性输入和提交大批量数据的场景。"
+        title="Cancer Data Set"
+        content="An example set of forms using Ant Design's components. The biomarkers section is currently only implemented with the input as a 'grid'."
         wrapperClassName={styles.advancedForm}
       >
         <Card title="Vital Status" className={styles.card}>
@@ -130,7 +117,7 @@ class AdvancedForm extends PureComponent {
                 {/* This provides the actual visual label to the field */}
                 <Form.Item label={fieldLabels.vitalStatus}>
                   {getFieldDecorator('vitalStatus', {
-                    rules: [{ required: true, message: '请输入仓库名称' }],
+                    rules: [{ required: true, message: 'Please select a valid status.' }],
                   })(
                     <Select placeholder="Select Status...">
                       <Option value="xiao">Alive</Option>
@@ -156,62 +143,43 @@ class AdvancedForm extends PureComponent {
                 </Form.Item>
               </Col>
               <Col xl={{ span: 6, offset: 2 }} lg={{ span: 8 }} md={{ span: 12 }} sm={24}>
-                <Form.Item label={fieldLabels.url}>
-                  {getFieldDecorator('url', {
-                    rules: [{ required: true, message: '请选择' }],
+                <Form.Item label={fieldLabels.site}>
+                  {getFieldDecorator('site', {
+                    rules: [{ required: true, message: 'Please select a site.' }],
                   })(
-                    <Input
-                      style={{ width: '100%' }}
-                      addonBefore="http://"
-                      addonAfter=".com"
-                      placeholder="请输入"
-                    />
-                  )}
+                    <Select placeholder="Select...">
+                      <Option value="option1">Site 1</Option>
+                      <Option value="option2">Site 2</Option>
+                      <Option value="option3">Site 3</Option>
+                      <Option value="option4">Site 4</Option>
+                    </Select>
+                    )}
                 </Form.Item>
               </Col>
               <Col xl={{ span: 8, offset: 2 }} lg={{ span: 10 }} md={{ span: 24 }} sm={24}>
-                <Form.Item label={fieldLabels.owner}>
-                  {getFieldDecorator('owner', {
-                    rules: [{ required: true, message: '请选择管理员' }],
+                <Form.Item label={fieldLabels.histology}>
+                  {getFieldDecorator('histology', {
+                    rules: [{ required: true, message: 'Utilize whatever message you want here! #bitcoin' }],
                   })(
-                    <Select placeholder="请选择管理员">
-                      <Option value="xiao">付晓晓</Option>
-                      <Option value="mao">周毛毛</Option>
+                    <Select placeholder="Select...">
+                      <Option value="option1">Histology 1</Option>
+                      <Option value="option2">Histology 2</Option>
+                      <Option value="option3">Histology 3</Option>
+                      <Option value="option4">Histology 4</Option>
                     </Select>
-                  )}
+                    )}
                 </Form.Item>
               </Col>
             </Row>
             <Row gutter={16}>
               <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.approver}>
-                  {getFieldDecorator('approver', {
-                    rules: [{ required: true, message: '请选择审批员' }],
+                <Form.Item label={fieldLabels.pathology}>
+                  {getFieldDecorator('pathology', {
+                    rules: [{ required: true, message: 'See errors by the submit button!' }],
                   })(
-                    <Select placeholder="请选择审批员">
-                      <Option value="xiao">付晓晓</Option>
-                      <Option value="mao">周毛毛</Option>
-                    </Select>
-                  )}
-                </Form.Item>
-              </Col>
-              <Col xl={{ span: 6, offset: 2 }} lg={{ span: 8 }} md={{ span: 12 }} sm={24}>
-                <Form.Item label={fieldLabels.dateRange}>
-                  {getFieldDecorator('dateRange', {
-                    rules: [{ required: true, message: '请选择生效日期' }],
-                  })(
-                    <RangePicker placeholder={['开始日期', '结束日期']} style={{ width: '100%' }} />
-                  )}
-                </Form.Item>
-              </Col>
-              <Col xl={{ span: 8, offset: 2 }} lg={{ span: 10 }} md={{ span: 24 }} sm={24}>
-                <Form.Item label={fieldLabels.type}>
-                  {getFieldDecorator('type', {
-                    rules: [{ required: true, message: '请选择仓库类型' }],
-                  })(
-                    <Select placeholder="请选择仓库类型">
-                      <Option value="private">私密</Option>
-                      <Option value="public">公开</Option>
+                    <Select placeholder="Select...">
+                      <Option value="I">Stage I</Option>
+                      <Option value="II">Stage II</Option>
                     </Select>
                   )}
                 </Form.Item>
@@ -220,92 +188,54 @@ class AdvancedForm extends PureComponent {
           </Form>
         </Card>
 
-        <Card title="任务管理" className={styles.card} bordered={false}>
+        <Card title="Biomarkers" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
               <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.name2}>
-                  {getFieldDecorator('name2', {
-                    rules: [{ required: true, message: '请输入' }],
+                <Form.Item label={fieldLabels.date}>
+                  {getFieldDecorator('date', {
+                    rules: [{ required: true, message: 'Input a valid date: MM/DD/YYYY' }],
                   })(
-                    <Input placeholder="请输入" />
-                  )}
-                </Form.Item>
-              </Col>
-              <Col xl={{ span: 6, offset: 2 }} lg={{ span: 8 }} md={{ span: 12 }} sm={24}>
-                <Form.Item label={fieldLabels.url2}>
-                  {getFieldDecorator('url2', {
-                    rules: [{ required: true, message: '请选择' }],
-                  })(
-                    <Input placeholder="请输入" />
-                  )}
-                </Form.Item>
-              </Col>
-              <Col xl={{ span: 8, offset: 2 }} lg={{ span: 10 }} md={{ span: 24 }} sm={24}>
-                <Form.Item label={fieldLabels.owner2}>
-                  {getFieldDecorator('owner2', {
-                    rules: [{ required: true, message: '请选择管理员' }],
-                  })(
-                    <Select placeholder="请选择管理员">
-                      <Option value="xiao">付晓晓</Option>
-                      <Option value="mao">周毛毛</Option>
-                    </Select>
-                  )}
+                    <DatePicker defaultValue={moment('2015/01/01', dateFormat)} format={dateFormat} />
+                    )}
                 </Form.Item>
               </Col>
             </Row>
-            <Row gutter={16}>
-              <Col lg={6} md={12} sm={24}>
-                <Form.Item label={fieldLabels.approver2}>
-                  {getFieldDecorator('approver2', {
-                    rules: [{ required: true, message: '请选择审批员' }],
-                  })(
-                    <Select placeholder="请选择审批员">
-                      <Option value="xiao">付晓晓</Option>
-                      <Option value="mao">周毛毛</Option>
-                    </Select>
-                  )}
-                </Form.Item>
-              </Col>
-              <Col xl={{ span: 6, offset: 2 }} lg={{ span: 8 }} md={{ span: 12 }} sm={24}>
-                <Form.Item label={fieldLabels.dateRange2}>
-                  {getFieldDecorator('dateRange2', {
-                    rules: [{ required: true, message: '请输入' }],
-                  })(
-                    <TimePicker
-                      placeholder="提醒时间"
-                      style={{ width: '100%' }}
-                      getPopupContainer={trigger => trigger.parentNode}
-                    />
-                  )}
-                </Form.Item>
-              </Col>
-              <Col xl={{ span: 8, offset: 2 }} lg={{ span: 10 }} md={{ span: 24 }} sm={24}>
-                <Form.Item label={fieldLabels.type2}>
-                  {getFieldDecorator('type2', {
-                    rules: [{ required: true, message: '请选择仓库类型' }],
-                  })(
-                    <Select placeholder="请选择仓库类型">
-                      <Option value="private">私密</Option>
-                      <Option value="public">公开</Option>
-                    </Select>
-                  )}
-                </Form.Item>
-              </Col>
-            </Row>
+            <Checkbox.Group style={{ width: '100%' }}>
+              <Row>
+                <Col span={6}><Checkbox value="0">PD-1 Expression</Checkbox></Col>
+                <Col span={6}><Checkbox value="1">KRAS Wildtype</Checkbox></Col>
+                <Col span={6}><Checkbox value="2">NRAS Wildtype</Checkbox></Col>
+                <Col span={6}><Checkbox value="3">ALK Rearrangement</Checkbox></Col>
+                <Col span={6}><Checkbox value="4">BCR-ABL Fusion (Philadelphia chromosome)</Checkbox></Col>
+                <Col span={6}><Checkbox value="5">BRAF Wildtype</Checkbox></Col>
+                <Col span={6}><Checkbox value="6">KIT Mutations</Checkbox></Col>
+                <Col span={6}><Checkbox value="7">TPS3 Mutations</Checkbox></Col>
+                <Col span={6}><Checkbox value="8">Microsatellite Instability (MSI)</Checkbox></Col>
+                <Col span={6}><Checkbox value="9">PTEN Mutations</Checkbox></Col>
+                <Col span={6}><Checkbox value="10">MLH1 Expression</Checkbox></Col>
+                <Col span={6}><Checkbox value="11">MSH2 Expression</Checkbox></Col>
+                <Col span={6}><Checkbox value="12">MSH6 Expression</Checkbox></Col>
+                <Col span={6}><Checkbox value="13">PMS2 Expression</Checkbox></Col>
+                <Col span={6}><Checkbox value="14">TPS3 Expression</Checkbox></Col>
+                <Col span={6}><Checkbox value="15">RET Rearrangement</Checkbox></Col>
+                <Col span={6}><Checkbox value="16">MET Mutations</Checkbox></Col>
+                <Col span={6}><Checkbox value="17">MET Amplification</Checkbox></Col>
+                <Col span={6}><Checkbox value="18">RET Mutations</Checkbox></Col>
+                <Col span={6}><Checkbox value="19">KI-67 Expression</Checkbox></Col>
+                <Col span={6}><Checkbox value="20">PIK3CA Mutations</Checkbox></Col>
+              </Row>
+            </Checkbox.Group>
           </Form>
         </Card>
-        <Card title="成员管理" bordered={false}>
-          {getFieldDecorator('members', {
-            initialValue: tableData,
-          })(<TableForm />)}
-        </Card>
+
         <FooterToolbar style={{ width: this.state.width }}>
           {getErrorInfo()}
           <Button type="primary" onClick={validate} loading={submitting}>
-            提交
+            Submit
           </Button>
         </FooterToolbar>
+
       </PageHeaderLayout>
     );
   }
